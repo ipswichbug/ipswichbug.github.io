@@ -1,0 +1,5 @@
+<li class="card post-card">
+  <p class="card-meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></p>
+  <a href="{{ p.url }}"><h3>{{ p.data.title }}</h3></a>
+  <p>{{ p.data.summary or (p.templateContent | excerpt) }}</p>
+</li>

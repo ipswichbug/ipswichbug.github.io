@@ -1,0 +1,7 @@
+---
+permalink: /issues/issues.json
+layout: false
+tags: []
+eleventyExcludeFromCollections: true
+---
+[{% for i in collections.issues %}{"title": {{ i.data.title | jsonify | safe }}, "url": "{{ i.url }}", "status": "{{ i.data.status }}", "statusLabel": {{ i.data.status | statusLabel | jsonify | safe }}, "category": {{ (i.data.category or "") | jsonify | safe }}, "location": {{ (i.data.location or "") | jsonify | safe }}, "summary": {{ (i.data.summary or "") | jsonify | safe }}, "lat": {{ i.data.lat or "null" }}, "lng": {{ i.data.lng or "null" }}}{% if not loop.last %},{% endif %}{% endfor %}]

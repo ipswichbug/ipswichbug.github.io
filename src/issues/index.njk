@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+title: Issues
+description: The Ipswich BUG issues register. Problem spots, missing links and projects affecting people who ride in the Ipswich local government area, and what we're doing about them.
+permalink: /issues/
+eleventyExcludeFromCollections: true
+---
+{% block head %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endblock %}
+<div class="wrap">
+  <h1>Issues register</h1>
+  <p class="lead">Every problem we're working on across the Ipswich LGA: where it is, what we've asked for, and what's happened since. <a href="/issues/report/">Report a new one</a>.</p>
+
+  {% set nActive = (collections.issues | activeIssues).length %}
+  {% set nOpen = (collections.issues | whereStatus("open")).length %}
+  {% set nRaised = (collections.issues | whereStatus("raised")).length %}
+  {% set nProg = (collections.issues | whereStatus("in-progress")).length %}
+  {% set nClosed = (collections.issues | whereStatus("resolved", "won")).length %}
+  {% set nParked = (collections.issues | whereStatus("parked")).length %}
+  <div class="filters" role="group" aria-label="Filter issues">
+    <button data-filter="all" aria-pressed="true">Active <span class="count">{{ nActive }}</span></button>
+    <button data-filter="open" aria-pressed="false">Open <span class="count">{{ nOpen }}</span></button>
+    <button data-filter="raised" aria-pressed="false">Raised with council <span class="count">{{ nRaised }}</span></button>
+    <button data-filter="in-progress" aria-pressed="false">In progress <span class="count">{{ nProg }}</span></button>
+    <button data-filter="closed" aria-pressed="false">Resolved &amp; wins <span class="count">{{ nClosed }}</span></button>
+    <button data-filter="parked" aria-pressed="false">Parked <span class="count">{{ nParked }}</span></button>
+  </div>
+  <div id="issues-map" data-centre='{{ site.mapCentre | jsonify }}'></div>
+  <p class="legend"><span><i style="background:var(--st-open)"></i>Open</span><span><i style="background:var(--st-raised)"></i>Raised with council</span><span><i style="background:var(--st-in-progress)"></i>In progress</span><span><i style="background:var(--st-resolved)"></i>Resolved / win</span><span><i style="background:var(--st-parked)"></i>Parked</span></p>
+
+  <ul class="cards">
+    {% for i in collections.issues | byStatusOrder %}
+    <li class="card issue-card" data-issue-status="{{ i.data.status }}"{% if i.data.status in ["resolved","won","parked"] %} hidden{% endif %}>
+      <a href="{{ i.url }}"><h3>{{ i.data.title }}</h3></a>
+      <p class="card-meta"><span class="badge status-{{ i.data.status }}">{{ i.data.status | statusLabel }}</span>{% if i.data.category %} · {{ i.data.category }}{% endif %}{% if i.data.location %} · 📍 {{ i.data.location }}{% endif %}</p>
+      {% if i.data.summary %}<p>{{ i.data.summary }}</p>{% endif %}
+      {% if i.data.milestone %}<p class="small">Next: {{ i.data.milestone }}</p>{% endif %}
+      {% if i.data.updated %}<p class="small">Updated {{ i.data.updated | readableDate }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="small">Statuses: <strong>Open</strong> = we know about it and are preparing the case. <strong>Raised</strong> = formally put to council or TMR. <strong>In progress</strong> = funded or being built. <strong>Resolved / Win</strong> = done. <strong>Parked</strong> = not actively pursued right now. Register last reviewed {{ buildTime | readableDate("LLLL yyyy") }}. Missing something? <a href="/issues/report/">Suggest a location</a>.</p>
+</div>
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="/assets/js/issues-map.js"></script>
+{% endblock %}

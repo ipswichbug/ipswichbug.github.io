@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: Home
+eleventyExcludeFromCollections: true
+---
+<section class="hero">
+  <div class="wrap">
+    <h1>Better streets for everyone who rides in Ipswich</h1>
+    <p>{{ site.description }}</p>
+    <a class="btn" href="/join/">Join the BUG</a>
+    <a class="btn secondary" href="/issues/">See the issues</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="pillars">
+      <div><h3>We speak up</h3><p>We put the case for safe, connected bike routes to Ipswich City Council, Transport and Main Roads and local members, with evidence and on-the-ground knowledge.</p></div>
+      <div><h3>We track the problems</h3><p>Missing links, dangerous crossings, broken paths. Our <a href="/issues/">issues register</a> records what's wrong, what we've asked for, and what happened.</p></div>
+      <div><h3>We ride together</h3><p>Social rides for everyday riders, not just the lycra crowd. <a href="/rides/">Come along</a>, no matter what you ride.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head"><h2>Current issues</h2><a href="/issues/">All issues and map →</a></div>
+    <ul class="cards">
+      {% for i in collections.issues | activeIssues | limit(3) %}{% include "partials/issue-card.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>Latest news</h2><a href="/news/">All news →</a></div>
+    <ul class="cards">
+      {% for p in collections.news | limit(3) %}{% include "partials/post-card.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <h2>Seen something that needs fixing?</h2>
+    <p>A pothole on a bike path, a missing kerb ramp, a dangerous pinch point. <a href="/issues/report/">Tell us about it</a> and we'll add it to the register and chase it up. You can also report hazards directly to <a href="https://www.ipswich.qld.gov.au/About-Council/Report-an-Issue">Ipswich City Council</a>.</p>
+  </div>
+</section>

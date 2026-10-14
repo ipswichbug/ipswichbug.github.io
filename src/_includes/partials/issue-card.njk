@@ -1,0 +1,5 @@
+<li class="card issue-card">
+  <a href="{{ i.url }}"><h3>{{ i.data.title }}</h3></a>
+  <p class="card-meta"><span class="badge status-{{ i.data.status }}">{{ i.data.status | statusLabel }}</span>{% if i.data.location %} <span>📍 {{ i.data.location }}</span>{% endif %}</p>
+  {% if i.data.summary %}<p>{{ i.data.summary }}</p>{% endif %}
+</li>

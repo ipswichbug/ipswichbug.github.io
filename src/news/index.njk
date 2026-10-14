@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+title: News
+description: News, reports and opinion from the Ipswich Bicycle User Group.
+permalink: /news/
+eleventyExcludeFromCollections: true
+---
+<div class="wrap">
+  <h1>News</h1>
+  <p class="lead">Reports from the committee, write-ups of council consultations, and the occasional rant. <a href="/feed.xml">Subscribe via RSS</a>.</p>
+  <ul class="cards">
+    {% for p in collections.news %}{% include "partials/post-card.njk" %}{% endfor %}
+  </ul>
+</div>

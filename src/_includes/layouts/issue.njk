@@ -1,0 +1,55 @@
+---
+layout: layouts/base.njk
+---
+{% block head %}{% if lat and lng %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}{% endblock %}
+<article class="wrap issue">
+  <p class="eyebrow"><a href="/issues/">Issues</a>{% if category %} · {{ category }}{% endif %}</p>
+  <h1>{{ title }}</h1>
+  <p class="issue-meta">
+    <span class="badge status-{{ status }}">{{ status | statusLabel }}</span>
+    {% if location %}<span>📍 {{ location }}</span>{% endif %}
+  </p>
+  {% if summary %}<p class="lead">{{ summary }}</p>{% endif %}
+
+  <div class="issue-grid">
+    <div class="prose">
+      {% if image %}<img class="hero-img" src="{{ image }}" alt="{{ imageAlt or '' }}">{% endif %}
+      {{ content | safe }}
+      {% if updates %}
+      <h2 id="updates">Updates and correspondence</h2>
+      <ol class="timeline">
+        {% for u in updates | reverse %}
+        <li><time datetime="{{ u.date | isoDate }}">{{ u.date | readableDate }}</time> {{ u.text | safe }}{% if u.doc %} <a href="{{ u.doc }}">{{ u.docText or "Document" }}</a>{% endif %}{% if u.ref %} <span class="small">Ref {{ u.ref }}</span>{% endif %}</li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+    </div>
+    <aside class="issue-side">
+      <dl>
+        <dt>Status</dt><dd><span class="badge status-{{ status }}">{{ status | statusLabel }}</span></dd>
+        {% if raised %}<dt>Raised</dt><dd>{{ raised | readableDate("LLL yyyy") }}</dd>{% endif %}
+        {% if updated %}<dt>Last update</dt><dd>{{ updated | readableDate }}</dd>{% endif %}
+        {% if milestone %}<dt>Next milestone</dt><dd>{{ milestone }}</dd>{% endif %}
+        {% if ask %}<dt>What we're asking for</dt><dd>{{ ask }}</dd>{% endif %}
+        {% if responsible %}<dt>Who can fix it</dt><dd>{{ responsible }}</dd>{% endif %}
+        {% if councilRef %}<dt>Council reference</dt><dd>{{ councilRef }}</dd>{% endif %}
+        {% if links %}<dt>Links</dt><dd><ul class="plain">{% for l in links %}<li><a href="{{ l.url }}">{{ l.text }}</a></li>{% endfor %}</ul></dd>{% endif %}
+      </dl>
+      {% if lat and lng %}
+      <div id="issue-map" class="mini-map" data-lat="{{ lat }}" data-lng="{{ lng }}" data-status="{{ status }}"></div>
+      <p><a href="https://www.openstreetmap.org/?mlat={{ lat }}&mlon={{ lng }}#map=17/{{ lat }}/{{ lng }}">Open in OpenStreetMap</a></p>
+      {% endif %}
+      <p class="small">Know something about this one? <a href="mailto:{{ site.email }}?subject=Issue: {{ title | urlencode }}">Email us</a>.</p>
+    </aside>
+  </div>
+  {% if relatedPosts %}
+  <aside class="related">
+    <h2>Related news</h2>
+    <ul>{% for slug in relatedPosts %}{% for p in collections.news %}{% if (p.fileSlug | stripDatePrefix) == slug %}<li><a href="{{ p.url }}">{{ p.data.title }}</a> <small>{{ p.date | readableDate }}</small></li>{% endif %}{% endfor %}{% endfor %}</ul>
+  </aside>
+  {% endif %}
+</article>
+{% block scripts %}{% if lat and lng %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="/assets/js/issues-map.js"></script>
+{% endif %}{% endblock %}

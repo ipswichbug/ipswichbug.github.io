@@ -1,0 +1,1 @@
+{ "layout": "layouts/issue.njk", "tags": ["issue"], "permalink": "/issues/{{ page.fileSlug }}/", "status": "open" }

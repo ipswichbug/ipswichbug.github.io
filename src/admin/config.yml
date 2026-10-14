@@ -1,0 +1,80 @@
+# Decap CMS config. Editors log in with GitHub and every save is a commit, which triggers a deploy.
+# TODO before this works: set `repo` to the real GitHub repo and set up OAuth (see README, "Editing in the browser").
+backend:
+  name: github
+  repo: OWNER/ipswichbug
+  branch: main
+  # base_url + auth_endpoint are needed if you use a self-hosted OAuth proxy instead of Netlify Identity.
+
+media_folder: "src/assets/img"
+public_folder: "/assets/img"
+site_url: https://www.ipswich-bug.org
+logo_url: /assets/img/logo.jpg
+
+collections:
+  - name: news
+    label: News
+    folder: src/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "news/{{slug}}/"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Summary, name: summary, widget: text, required: false }
+      - { label: Author, name: author, widget: string, required: false }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Image description, name: imageAlt, widget: string, required: false }
+      - { label: Related issues (slugs), name: relatedIssues, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: issues
+    label: Issues
+    folder: src/issues
+    create: true
+    slug: "{{slug}}"
+    filter: { field: layout, value: null }
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Status, name: status, widget: select, options: [open, raised, in-progress, resolved, won, parked], default: open }
+      - { label: Category, name: category, widget: select, options: [Hazard, Missing link, Intersection, Maintenance, Project, Policy] }
+      - { label: Location, name: location, widget: string }
+      - { label: Latitude, name: lat, widget: number, value_type: float, required: false }
+      - { label: Longitude, name: lng, widget: number, value_type: float, required: false }
+      - { label: Raised, name: raised, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Last updated, name: updated, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Who can fix it, name: responsible, widget: string, required: false }
+      - { label: What we're asking for, name: ask, widget: text, required: false }
+      - { label: Next milestone, name: milestone, widget: string, required: false }
+      - { label: Council reference, name: councilRef, widget: string, required: false }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Image description, name: imageAlt, widget: string, required: false }
+      - { label: Related news (slugs), name: relatedPosts, widget: list, required: false }
+      - label: Links
+        name: links
+        widget: list
+        required: false
+        fields:
+          - { label: Text, name: text, widget: string }
+          - { label: URL, name: url, widget: string }
+      - label: Updates
+        name: updates
+        widget: list
+        required: false
+        fields:
+          - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+          - { label: Update, name: text, widget: text }
+          - { label: Reference number, name: ref, widget: string, required: false }
+          - { label: Document (PDF), name: doc, widget: file, required: false }
+          - { label: Document link text, name: docText, widget: string, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: pages
+    label: Pages
+    files:
+      - { label: About, name: about, file: src/about.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
+      - { label: Join, name: join, file: src/join.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
+      - { label: Rides, name: rides, file: src/rides.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
+      - { label: Resources, name: resources, file: src/resources.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
+      - { label: Contact, name: contact, file: src/contact.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }

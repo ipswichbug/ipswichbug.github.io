@@ -1,0 +1,12 @@
+{
+  "name": "Ipswich Bicycle User Group",
+  "shortName": "Ipswich BUG",
+  "tagline": "Promoting cycling and improving cycling facilities in Ipswich, Queensland.",
+  "description": "Ipswich BUG is a volunteer group of everyday riders working for safer, better-connected streets and paths across the Ipswich local government area.",
+  "url": "https://www.ipswich-bug.org",
+  "email": "ipswichbug@gmail.com",
+  "facebook": "https://www.facebook.com/groups/ipswichbug",
+  "lang": "en-AU",
+  "locale": "en_AU",
+  "mapCentre": { "lat": -27.6146, "lng": 152.7608, "zoom": 12 }
+}

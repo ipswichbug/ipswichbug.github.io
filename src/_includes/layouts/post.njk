@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+---
+<article class="wrap prose">
+  <p class="eyebrow"><a href="/news/">News</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if author %} · {{ author }}{% endif %}</p>
+  <h1>{{ title }}</h1>
+  {% if summary %}<p class="lead">{{ summary }}</p>{% endif %}
+  {% if image %}<img class="hero-img" src="{{ image }}" alt="{{ imageAlt or '' }}">{% endif %}
+  {{ content | safe }}
+  {% if relatedIssues %}
+  <aside class="related">
+    <h2>Related issues</h2>
+    <ul>
+    {% for slug in relatedIssues %}{% for i in collections.issues %}{% if i.fileSlug == slug %}
+      <li><a href="{{ i.url }}">{{ i.data.title }}</a> <span class="badge status-{{ i.data.status }}">{{ i.data.status | statusLabel }}</span></li>
+    {% endif %}{% endfor %}{% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+  <nav class="post-nav">
+    {% set prev = collections.news | getPreviousCollectionItem %}{% set next = collections.news | getNextCollectionItem %}
+    {% if next %}<a href="{{ next.url }}">← {{ next.data.title }}</a>{% endif %}
+    {% if prev %}<a href="{{ prev.url }}">{{ prev.data.title }} →</a>{% endif %}
+  </nav>
+</article>

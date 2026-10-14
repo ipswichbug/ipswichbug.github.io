@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Submissions and letters
+description: Every submission and letter Ipswich BUG has sent to council, TMR and government, with their responses.
+permalink: /submissions/
+eleventyExcludeFromCollections: true
+---
+<div class="wrap prose prose-wide">
+  <h1>Submissions and letters</h1>
+  <p class="lead">What we've put to council, TMR and government, and what came back. Letters are published so the record is public and nothing gets quietly forgotten.</p>
+  {% if submissions.length %}
+  <table class="submissions">
+    <thead><tr><th>Date</th><th>To</th><th>Subject</th><th>Documents</th></tr></thead>
+    <tbody>
+    {% for s in submissions | sort(true, false, "date") %}
+      <tr>
+        <td>{{ s.date | readableDate("d LLL yyyy") }}</td>
+        <td>{{ s.to }}</td>
+        <td><strong>{{ s.title }}</strong>{% if s.summary %}<br><span class="small">{{ s.summary }}</span>{% endif %}{% if s.issue %}<br><a href="{{ s.issue }}">Related issue</a>{% endif %}</td>
+        <td>{% if s.doc %}<a href="{{ s.doc }}">Our submission</a>{% endif %}{% if s.response %}<br><a href="{{ s.response }}">Response</a>{% else %}{% if s.doc %}<br><span class="small">No response yet</span>{% endif %}{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>Nothing published yet.</p>
+  {% endif %}
+  <p class="small">To add a row, edit <code>src/_data/submissions.json</code> and put PDFs in <code>src/assets/docs/</code>.</p>
+</div>

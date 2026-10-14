@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.shortName }}</title>
+  <meta name="description" content="{{ description or summary or site.tagline }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="icon" href="/assets/img/logo.jpg">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.shortName }} news" href="/feed.xml">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or summary or site.tagline }}">
+  <meta property="og:type" content="{% if layout == 'layouts/post.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}{{ image or '/assets/img/hero-ipswich-sunset.jpg' }}">
+  <meta property="og:locale" content="{{ site.locale }}">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  {% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <img src="/assets/img/logo.jpg" alt="" width="48" height="48">
+      <span>{{ site.name }}</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav">
+      {% for item in nav %}
+        <a href="{{ item.url }}" class="{% if item.cta %}cta{% endif %}{% if page.url.startsWith(item.url) %} active{% endif %}">{{ item.text }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  {{ content | safe }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <strong>{{ site.name }}</strong>
+      <p>{{ site.tagline }}</p>
+      <p>We ride on the lands of the Yuggera and Ugarapul peoples and pay respect to Elders past and present.</p>
+    </div>
+    <div>
+      <strong>Get in touch</strong>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
+      <a href="{{ site.facebook }}">Facebook group</a><br>
+      <a href="/feed.xml">News feed (RSS)</a></p>
+    </div>
+    <div>
+      <strong>Take part</strong>
+      <p><a href="/join/">Join the BUG</a><br>
+      <a href="/issues/report/">Report an issue</a><br>
+      <a href="/submissions/">Submissions and letters</a><br>
+      <a href="/rides/">Come for a ride</a></p>
+    </div>
+  </div>
+  <div class="wrap footer-meta">
+    <small>Updated {{ buildTime | readableDate("d LLL yyyy") }}. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</small>
+  </div>
+</footer>
+<script>
+  const t = document.querySelector('.nav-toggle'), n = document.getElementById('site-nav');
+  t.addEventListener('click', () => { const o = n.classList.toggle('open'); t.setAttribute('aria-expanded', o); });
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,9 @@
+[
+  { "text": "News", "url": "/news/" },
+  { "text": "Issues", "url": "/issues/" },
+  { "text": "Take action", "url": "/take-action/" },
+  { "text": "Rides", "url": "/rides/" },
+  { "text": "Resources", "url": "/resources/" },
+  { "text": "About", "url": "/about/" },
+  { "text": "Join", "url": "/join/", "cta": true }
+]
