@@ -17,7 +17,7 @@ html { font-family: var(--font); color: var(--ink); background: var(--bg); line-
 body { margin: 0; }
 img { max-width: 100%; height: auto; }
 a { color: var(--green-2); }
-a:hover { color: var(--green); }
+a:where(:hover) { color: var(--green); } /* :where keeps this below .brand, .btn etc. */
 h1, h2, h3 { line-height: 1.2; color: var(--green); margin: 1.4em 0 .5em; }
 h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-top: .5em; }
 h2 { font-size: 1.5rem; } h3 { font-size: 1.15rem; }
