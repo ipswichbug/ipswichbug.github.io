@@ -14,7 +14,6 @@ Ipswich Bicycle User Group (Ipswich BUG) is a volunteer group of people who ride
 
 - **Advocate.** We make the case to Ipswich City Council, the Department of Transport and Main Roads, and our local state and federal members for safe, connected cycling routes. We respond to consultations, write submissions, and meet with planners and councillors.
 - **Keep a register of issues.** Our [issues register](/issues/) tracks hazards, missing links and projects across the LGA, so problems don't get forgotten and wins get recorded.
-- **Ride.** We run relaxed social rides and occasionally group rides to consultations or events. See [rides](/rides/).
 - **Share what we know.** Routes, maps, safety info and how to deal with council. See [resources](/resources/).
 
 ## Who we are

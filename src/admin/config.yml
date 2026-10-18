@@ -75,6 +75,5 @@ collections:
     files:
       - { label: About, name: about, file: src/about.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
       - { label: Join, name: join, file: src/join.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
-      - { label: Rides, name: rides, file: src/rides.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
       - { label: Resources, name: resources, file: src/resources.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
       - { label: Contact, name: contact, file: src/contact.md, fields: [{ label: Title, name: title, widget: string }, { label: Body, name: body, widget: markdown }] }
