@@ -30,7 +30,7 @@ Reports to council and TMR are logged and counted. Numbers matter, so report it 
 
 ## 2. Tell us
 
-Email **[{{ site.email }}](mailto:{{ site.email }}?subject=Issue report)** with:
+Email **[{{ site.email }}](mailto:{{ site.email }}?subject=Issue%20report)** with:
 
 - **Where**: street and suburb, or a pin from Google Maps or OpenStreetMap
 - **What**: the problem in a sentence or two, and who it affects

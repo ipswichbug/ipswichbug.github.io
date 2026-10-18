@@ -11,7 +11,7 @@ The more of us there are, the harder we are to ignore. Membership is free. <!-- 
 ## How to join
 
 1. **Join the [Facebook group]({{ site.facebook }})** for day-to-day chat and quick heads-ups.
-2. **Email us at [{{ site.email }}](mailto:{{ site.email }}?subject=Joining Ipswich BUG)** with your name and suburb so we can count you and keep you posted on consultations and meetings.
+2. **Email us at [{{ site.email }}](mailto:{{ site.email }}?subject=Joining%20Ipswich%20BUG)** with your name and suburb so we can count you and keep you posted on consultations and meetings.
 
 <!-- TODO: replace step 2 with a proper sign-up form once decided (Google Form, Mailchimp, Buttondown, etc). -->
 
