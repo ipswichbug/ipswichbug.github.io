@@ -39,6 +39,4 @@ Ipswich residents are contantly calling for traffic congestion to be addressed y
 - Reduce speed limits to 50 km/h or less when there is no service lane or shoulder on the road.
 - Modify pedestrian refuges and traffic island so that they don't block cyclist.
 
-## Background
-
 
