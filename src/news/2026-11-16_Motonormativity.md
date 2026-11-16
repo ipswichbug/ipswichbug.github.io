@@ -4,7 +4,7 @@ title: What's important in Rosewood?
 date: 2026-11-16
 summary: Rosewood community engagement shows that active transport is important.
 author: Ipswich BUG          # optional
-image: /assets/img/photo.jpg   # optional, shown at the top
+image: /assets/img/safe_paths_and_connections.jpg   # optional, shown at the top
 imageAlt: Survey results from Rosewood community engagement.
 ---
 
@@ -25,11 +25,3 @@ I'd be very interested to see this research repeated in Australia but I suspect 
 Incidentally, there's a transport planner job up for grabs at the Council:
 [Transport Planner](https://career10.successfactors.com/career?career%5fns=job%5flisting&company=ipswichcit&navBarLevel=JOB%5fSEARCH&rcm%5fsite%5flocale=en%5fGB&career_job_req_id=3784&selected_lang=en_GB&jobAlertController_jobAlertId=&jobAlertController_jobAlertName=&browserTimeZone=Australia/Brisbane&_s.crb=dZMiXRqzY7wMhGQWz9pV3rgOeq%2bli9L%2fxJeU0mzcRvU%3d)
 
-
-
-
-
-
-![Caption-style alt text](/assets/img/photo.jpg)
-
-Links look like [this](https://example.com).
